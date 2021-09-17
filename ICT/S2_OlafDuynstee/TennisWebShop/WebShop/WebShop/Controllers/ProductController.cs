@@ -18,8 +18,14 @@ namespace WebShop.Controllers
         public ActionResult Index()
         {
             DataTable dt = new DataTable();
-            using (var con = new SqlConnection())
-                return View();
+            using (var con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                string query = "Select * from Product";
+                SqlDataAdapter sda = new SqlDataAdapter(query, con);
+                sda.Fill(dt);
+            }
+                return View(dt);
         }
 
         // GET: ProductController/Details/5
