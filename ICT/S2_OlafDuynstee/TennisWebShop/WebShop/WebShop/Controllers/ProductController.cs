@@ -12,9 +12,9 @@ namespace WebShop.Controllers
 {
     public class ProductController : Controller
     {
-        string connectionString = @"Data Source =.;Initial Catalog = WebshopDB; Integrated Security = True";
+        string connectionString = @"Data Source =(LocalDb)\MSSQLLocalDB;Initial Catalog = WebshopDB; Integrated Security = True";
         [HttpGet]
-        // GET: ProductController
+        // GET: ProductController   
         public ActionResult Index()
         {
             DataTable dt = new DataTable();
