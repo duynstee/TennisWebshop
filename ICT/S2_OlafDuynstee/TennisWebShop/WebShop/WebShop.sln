@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebShop", "WebShop\WebShop.csproj", "{714C6A05-75D7-4FC0-8030-E595DA3BC00B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database.Data", "Database.Data\Database.Data.csproj", "{DD652EC4-293B-431C-A4B1-F125D6394CFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database.Data", "Database.Data\Database.Data.csproj", "{DD652EC4-293B-431C-A4B1-F125D6394CFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{0872AAD0-6CDF-4399-9A62-BF987B862EDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DD652EC4-293B-431C-A4B1-F125D6394CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD652EC4-293B-431C-A4B1-F125D6394CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD652EC4-293B-431C-A4B1-F125D6394CFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0872AAD0-6CDF-4399-9A62-BF987B862EDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0872AAD0-6CDF-4399-9A62-BF987B862EDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0872AAD0-6CDF-4399-9A62-BF987B862EDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0872AAD0-6CDF-4399-9A62-BF987B862EDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Database.Data",
     "\\WebShop",
     "\\WebShop\\Controllers",
     "\\WebShop\\Models",
