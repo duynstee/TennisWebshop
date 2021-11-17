@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    class Product
+    public class Product
     {
         public string Name { get; set; }
         public string Size { get; set; }
@@ -20,10 +20,10 @@ namespace Logic
         }
         public Product(string name, string size, int quantity, string description)
         {
-            name = this.Name;
-            size = this.Size;
-            quantity = this.Quantity;
-            description = this.Description;
+            Name = name;
+            Size = size;
+            Quantity = quantity;
+            Description = description;
         }
     }
 }

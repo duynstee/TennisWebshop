@@ -11,16 +11,14 @@ namespace Logic
         public string Name { get; set; }
         public string Password { get; set; }
 
-
-
-        private Product AddProduct()
+        void AddProduct(Product product, List<Product> productList)
         {
-
+            productList.Add(product);
         }
 
-        private Product RemoveProduct(Product product)
+        void Remove(Product product, List<Product> productList)
         {
-
+            productList.Remove(product);
         }
     }
 }

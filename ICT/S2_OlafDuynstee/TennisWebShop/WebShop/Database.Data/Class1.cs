@@ -8,7 +8,7 @@ namespace Database.Data
     public class ProductDatabaseManager
     {
         private string connectionString =
-            "Data Source=localhost;Initial Catalog=WebShopDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            "Data Source=Server=mssql.fhict.local;Database=dbi467073;User Id=dbi467073;Password=12345678";
         public List<ProductDto> GetAllProducts()
         {
             List<ProductDto> products = new List<ProductDto>();

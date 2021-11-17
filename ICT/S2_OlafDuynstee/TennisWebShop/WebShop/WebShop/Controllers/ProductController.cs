@@ -7,12 +7,49 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection.Metadata.Ecma335;
+using Logic;
+using WebShop.Models;
 
 namespace WebShop.Controllers
 {
     public class ProductController : Controller
     {
-        string connectionString = @"Data Source =(LocalDb)\MSSQLLocalDB;Initial Catalog = WebshopDB; Integrated Security = True";
+
+        public ProductCollection ProductCollection = new ProductCollection();
+
+        public ActionResult Index()
+        {
+            var products = ProductCollection.GetproductList();
+
+            List<ProductViewModel> productViewModelList = new List<ProductViewModel>();
+
+            foreach (var product in products)
+            {
+                ProductViewModel prodVM = new ProductViewModel();
+                prodVM.Name = product.Name;
+                prodVM.Size = product.Size;
+                prodVM.Quantity = product.Quantity;
+                prodVM.Description = product.Description;
+                productViewModelList.Add(prodVM);
+            }
+
+            ViewBag.Product = productViewModelList;
+            return View();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        /*string connectionString = @"Data Source =(LocalDb)\MSSQLLocalDB;Initial Catalog = WebshopDB; Integrated Security = True";
         [HttpGet]
         // GET: ProductController   
         public ActionResult Index()
@@ -96,5 +133,6 @@ namespace WebShop.Controllers
                 return View();
             }
         }
+        */
     }
 }

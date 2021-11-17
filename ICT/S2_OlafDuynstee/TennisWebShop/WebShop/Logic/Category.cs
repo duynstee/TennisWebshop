@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    class OrderList
+    class Category
     {
-        private List<Product> orderList = new List<Product>();
-        private int Totalprice;
+        private string Name;
 
-        void PlaceOrder()
+        private void AddCatogory()
         {
 
         }
