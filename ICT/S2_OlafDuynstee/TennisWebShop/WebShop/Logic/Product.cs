@@ -10,6 +10,7 @@ namespace Logic
     {
         public string Name { get; set; }
         public string Size { get; set; }
+        public string Price { get; set; }
         public int Quantity { get; set; }
         public string Description { get; set; }
 
@@ -18,10 +19,11 @@ namespace Logic
         {
 
         }
-        public Product(string name, string size, int quantity, string description)
+        public Product(string name, string size, string price, int quantity, string description)
         {
             Name = name;
             Size = size;
+            Price = price;
             Quantity = quantity;
             Description = description;
         }

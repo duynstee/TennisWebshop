@@ -29,6 +29,7 @@ namespace WebShop.Controllers
                 ProductViewModel prodVM = new ProductViewModel();
                 prodVM.Name = product.Name;
                 prodVM.Size = product.Size;
+                prodVM.Price = product.Price;
                 prodVM.Quantity = product.Quantity;
                 prodVM.Description = product.Description;
                 productViewModelList.Add(prodVM);
@@ -39,14 +40,7 @@ namespace WebShop.Controllers
         }
 
 
-
-
-
-
-
-
-
-
+        
 
 
         /*string connectionString = @"Data Source =(LocalDb)\MSSQLLocalDB;Initial Catalog = WebshopDB; Integrated Security = True";
