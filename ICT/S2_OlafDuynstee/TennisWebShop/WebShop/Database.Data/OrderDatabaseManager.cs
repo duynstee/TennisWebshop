@@ -8,36 +8,35 @@ using Interfaces;
 
 namespace Database.Data
 {
-    public class ProductDatabaseManager : ProductInterface
+    public class OrderDatabaseManager : OrderInterface
     {
         private string connectionString =
             @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebshopDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        public List<ProductDto> GetAllProducts()
+
+        public List<OrderDto> GetAllOrders()
         {
-            List<ProductDto> products = new List<ProductDto>();
+            List<OrderDto> Orders = new List<OrderDto>();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand query = new SqlCommand("select * from Products", conn))
+                using (SqlCommand query = new SqlCommand("select * from Orders inner join Products on Orders.ProductID=Products.ProductID", conn))
                 {
                     conn.Open();
 
                     var reader = query.ExecuteReader();
                     while (reader.Read())
                     {
-                        ProductDto prod = new ProductDto();
-                        prod.ProductName = reader.GetString(1);
-                        prod.Size = reader.GetString(2);
-                        prod.Price = reader.GetString(3);
-                        prod.Quantity = reader.GetInt32(4);
-                        prod.Description = reader.GetString(5 );
+                        OrderDto ord = new OrderDto();
+                        ord.OrderID = reader.GetInt32(1);
+                        ord.ProductID = reader.GetInt32(2);
+                        ord.Quantity = reader.GetInt32(3);
+                        ord.ProductName = reader.GetString(5);
 
-                        products.Add(prod);
+                        Orders.Add(ord);
                     }
                 }
             }
-            return products;
+            return Orders;
         }
-
     }
 }

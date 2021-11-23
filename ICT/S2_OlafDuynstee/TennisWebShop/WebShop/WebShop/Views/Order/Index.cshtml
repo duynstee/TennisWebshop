@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Http.Features
+@using Logic
+@model System.Collections.Generic.List<Logic.Order>
+@{
+    ViewBag.Title = "Index";
+    List<OrderViewModel> orders = ViewBag.Order;
+}
+
+<table class="table table-bordered table table-striped">
+    <tr>
+        <th>OrderID</th>
+        <th>ProductID</th>
+        <th>Quantity</th>
+        <th>Name</th>
+    </tr>
+    @foreach (var order in orders)
+     {
+        <tr>
+            <td>@order.OrderID</td>
+            <td>@order.ProductID</td>
+            <td>@order.Quantity</td>
+            <td>@order.ProductName</td>
+        </tr>
+     }
+</table>

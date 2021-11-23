@@ -6,8 +6,24 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    class Order
+    public class Order
     {
-        
+        public int ID { get; set; }
+        public int OrderID { get; set; }
+        public int ProductID  { get; set; }
+        public int Quantity { get; set; }
+        public string ProductName { get; set; }
+
+        public Order()
+        {
+            
+        }
+        public Order(int id, int orderId, int productID, int quantity)
+        {
+            ID = id;
+            OrderID = orderId;
+            ProductID = productID;
+            Quantity = quantity;
+        }
     }
 }

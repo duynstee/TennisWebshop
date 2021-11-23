@@ -20,14 +20,14 @@ namespace WebShop.Controllers
 
         public ActionResult Index()
         {
-            var products = ProductCollection.GetproductList();
+            var products = ProductCollection.GetProductList();
 
             List<ProductViewModel> productViewModelList = new List<ProductViewModel>();
 
             foreach (var product in products)
             {
                 ProductViewModel prodVM = new ProductViewModel();
-                prodVM.Name = product.Name;
+                prodVM.ProductName = product.ProductName;
                 prodVM.Size = product.Size;
                 prodVM.Price = product.Price;
                 prodVM.Quantity = product.Quantity;
