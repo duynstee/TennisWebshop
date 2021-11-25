@@ -19,7 +19,8 @@ namespace Database.Data
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand query = new SqlCommand("select * from Orders inner join Products on Orders.ProductID=Products.ProductID", conn))
+               
+                using (SqlCommand query = new SqlCommand("select * from Orders inner join OrderItem on Orders.OrderID=OrderItem.OrderID inner join Products on OrderItem.ProductID=Products.ProductID", conn))
                 {
                     conn.Open();
 
@@ -27,10 +28,10 @@ namespace Database.Data
                     while (reader.Read())
                     {
                         OrderDto ord = new OrderDto();
-                        ord.OrderID = reader.GetInt32(1);
-                        ord.ProductID = reader.GetInt32(2);
-                        ord.Quantity = reader.GetInt32(3);
-                        ord.ProductName = reader.GetString(5);
+                        ord.ProductName = reader.GetString(7);
+                        ord.Size = reader.GetString(8);
+                        ord.Price = reader.GetString(9);
+                        ord.Quantity = reader.GetInt32(5);
 
                         Orders.Add(ord);
                     }

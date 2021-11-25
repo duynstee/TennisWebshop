@@ -21,10 +21,10 @@ namespace WebShop.Controllers
             foreach (var order in orders)
             {
                 OrderViewModel ordVM = new OrderViewModel();
-                ordVM.OrderID = order.OrderID;
-                ordVM.ProductID = order.ProductID;
-                ordVM.Quantity = order.Quantity;
                 ordVM.ProductName = order.ProductName;
+                ordVM.Price = order.Price;
+                ordVM.Size = order.Size;
+                ordVM.Quantity = order.Quantity;
                 orderViewModelList.Add(ordVM);
             }
 

@@ -11,8 +11,9 @@
         <th>Name</th>
         <th>Size</th>
         <th>Price</th>
-        <th>Quantity</th>
+        <th>Stock Quantity</th>
         <th>Description</th>
+        <th>Add</th>
     </tr>
     @foreach (var product in products)
      {
@@ -22,7 +23,7 @@
             <td>@product.Price</td>
             <td>@product.Quantity</td>
             <td>@product.Description</td>
+            <td><a asp-controller="Product" asp-action="AddToOrder" asp-route-id="@product.ProductId">Add to order</a></td>
         </tr>
      }
-    
 </table>

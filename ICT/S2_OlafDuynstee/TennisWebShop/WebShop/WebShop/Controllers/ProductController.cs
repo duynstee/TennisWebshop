@@ -27,6 +27,7 @@ namespace WebShop.Controllers
             foreach (var product in products)
             {
                 ProductViewModel prodVM = new ProductViewModel();
+                prodVM.ProductId = product.ProductId;
                 prodVM.ProductName = product.ProductName;
                 prodVM.Size = product.Size;
                 prodVM.Price = product.Price;
@@ -39,8 +40,16 @@ namespace WebShop.Controllers
             return View();
         }
 
+        [HttpGet]
+        [Route("/product/AddToOrder/{id}")]
+        public ActionResult AddToOrder(int productId)
+        {
+            ViewBag.CaseId = productId; 
+            return View();
+        }
 
-        
+
+
 
 
         /*string connectionString = @"Data Source =(LocalDb)\MSSQLLocalDB;Initial Catalog = WebshopDB; Integrated Security = True";

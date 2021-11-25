@@ -24,6 +24,7 @@ namespace Logic
             foreach (var product in products)
             {
                 Product prod = new Product();
+                prod.ProductId = product.ProductId;
                 prod.ProductName = product.ProductName;
                 prod.Size = product.Size;
                 prod.Price = product.Price;

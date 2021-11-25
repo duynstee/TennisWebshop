@@ -23,10 +23,10 @@ namespace Logic
             foreach (var order in orders)
             {
                 Order ord = new Order();
-                ord.OrderID = order.OrderID;
-                ord.ProductID = order.ProductID;
-                ord.Quantity = order.Quantity;
                 ord.ProductName = order.ProductName;
+                ord.Price = order.Price;
+                ord.Size = order.Size;
+                ord.Quantity = order.Quantity;
                 orderIDList.Add(ord);
             }
 

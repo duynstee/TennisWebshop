@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using Interfaces;
@@ -26,6 +27,7 @@ namespace Database.Data
                     while (reader.Read())
                     {
                         ProductDto prod = new ProductDto();
+                        prod.ProductId = reader.GetInt32(0);
                         prod.ProductName = reader.GetString(1);
                         prod.Size = reader.GetString(2);
                         prod.Price = reader.GetString(3);
