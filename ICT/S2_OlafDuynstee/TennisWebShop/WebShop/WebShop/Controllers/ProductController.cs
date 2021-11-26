@@ -41,11 +41,14 @@ namespace WebShop.Controllers
         }
 
         [HttpGet]
-        [Route("/product/AddToOrder/{id}")]
-        public ActionResult AddToOrder(int productId)
+        [Route("/product/AddToOrder/{productId:int}")]
+        public IActionResult AddToOrder(int productId)
         {
-            ViewBag.CaseId = productId; 
-            return View();
+            int userID = 1;
+            Customer customer = new Customer();
+            customer.AddProdToOrder(productId);
+            
+            return RedirectToAction(nameof(Index));
         }
 
 

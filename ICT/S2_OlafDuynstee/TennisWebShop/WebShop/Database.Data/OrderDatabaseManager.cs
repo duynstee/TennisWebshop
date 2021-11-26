@@ -19,7 +19,6 @@ namespace Database.Data
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-               
                 using (SqlCommand query = new SqlCommand("select * from Orders inner join OrderItem on Orders.OrderID=OrderItem.OrderID inner join Products on OrderItem.ProductID=Products.ProductID", conn))
                 {
                     conn.Open();
@@ -38,6 +37,23 @@ namespace Database.Data
                 }
             }
             return Orders;
+        }
+
+        public void AddToOrder(int productId, int orderId)
+        {
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                
+                using (var query = new SqlCommand("INSERT INTO OrderItem(OrderID, ProductID) Values(@OrderID, @ProductID)", conn))
+                {
+                    query.Parameters.AddWithValue("@OrderID", orderId);
+                    query.Parameters.AddWithValue("@ProductID", productId);
+
+                    query.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

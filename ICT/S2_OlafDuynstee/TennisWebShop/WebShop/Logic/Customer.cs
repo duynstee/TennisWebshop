@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    class Customer
+    public class Customer
     {
         private string Name;
         private string Address;
