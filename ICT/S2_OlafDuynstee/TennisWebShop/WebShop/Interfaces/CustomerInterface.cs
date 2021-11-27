@@ -9,5 +9,6 @@ namespace Interfaces
     public interface CustomerInterface
     {
         void AddProdToOrder(int productID);
+        void RemoveProdFromOrder(int OrderItemID);
     }
 }

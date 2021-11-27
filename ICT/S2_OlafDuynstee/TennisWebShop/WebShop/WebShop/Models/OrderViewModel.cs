@@ -10,6 +10,7 @@ namespace WebShop.Models
 {
     public class OrderViewModel
     {
+        public int OrderItemId { get; set; }
         public string ProductName { get; set; }
         public string Price { get; set; }
         public string  Size { get; set; }

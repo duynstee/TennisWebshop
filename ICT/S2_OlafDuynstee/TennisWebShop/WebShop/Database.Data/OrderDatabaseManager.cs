@@ -27,6 +27,7 @@ namespace Database.Data
                     while (reader.Read())
                     {
                         OrderDto ord = new OrderDto();
+                        ord.OrderItemId = reader.GetInt32(2);
                         ord.ProductName = reader.GetString(7);
                         ord.Size = reader.GetString(8);
                         ord.Price = reader.GetString(9);
@@ -49,6 +50,21 @@ namespace Database.Data
                 {
                     //query.Parameters.AddWithValue("@OrderID", orderId);
                     query.Parameters.AddWithValue("@ProductID", productId);
+
+                    query.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void RemoveProdFromOrder(int orderItemID)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using (var query = new SqlCommand("DELETE FROM OrderItem WHERE Id = @orderItemID", conn))
+                {
+                    query.Parameters.AddWithValue("@orderItemID", orderItemID);
 
                     query.ExecuteNonQuery();
                 }

@@ -21,6 +21,8 @@ namespace WebShop.Controllers
             foreach (var order in orders)
             {
                 OrderViewModel ordVM = new OrderViewModel();
+
+                ordVM.OrderItemId = order.OrderItemID;
                 ordVM.ProductName = order.ProductName;
                 ordVM.Price = order.Price;
                 ordVM.Size = order.Size;

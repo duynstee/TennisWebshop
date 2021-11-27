@@ -9,6 +9,7 @@ namespace Interfaces
 {
     public class OrderDto
     {
+        public int OrderItemId { get; set; }
         public string ProductName { get; set; }
         public string Price { get; set; }
         public string Size { get; set; }

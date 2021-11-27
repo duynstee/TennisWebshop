@@ -23,5 +23,11 @@ namespace Logic
             CustomerInterface dbMan = CustomerFactory.GetCustomerInterface();
             dbMan.AddProdToOrder(productID);
         }
+
+        public void RemoveProdFromOrder(int orderItemID)
+        {
+            CustomerInterface dbMan = CustomerFactory.GetCustomerInterface();
+            dbMan.RemoveProdFromOrder(orderItemID);
+        }
     }
 }

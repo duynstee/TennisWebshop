@@ -15,6 +15,7 @@
         <th>Price</th>
         <th>Size</th>
         <th>Quantity</th>
+        <th>Remove</th>
     </tr>
     @foreach (var order in orders)
      {
@@ -23,6 +24,9 @@
             <td>@order.Price</td>
             <td>@order.Size</td>
             <td>@order.Quantity</td>
+            <td><a asp-controller="Product" asp-action="RemoveProdFromOrder" asp-route-orderItemId=@order.OrderItemId>Remove From Order</a></td>
         </tr>
      }
 </table>
+
+<a asp-controller="Product" asp-action="Index">Continue Shopping?</a>

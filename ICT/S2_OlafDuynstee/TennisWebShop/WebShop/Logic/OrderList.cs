@@ -23,6 +23,7 @@ namespace Logic
             foreach (var order in orders)
             {
                 Order ord = new Order();
+                ord.OrderItemID = order.OrderItemId;
                 ord.ProductName = order.ProductName;
                 ord.Price = order.Price;
                 ord.Size = order.Size;

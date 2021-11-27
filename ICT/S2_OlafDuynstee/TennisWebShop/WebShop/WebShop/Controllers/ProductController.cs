@@ -48,8 +48,20 @@ namespace WebShop.Controllers
             Customer customer = new Customer();
             customer.AddProdToOrder(productId /*UserID*/);
             
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Order");
         }
+
+        [Route("/product/RemoveFromOrder/{orderItemId:int}")]
+        public ActionResult RemoveProdFromOrder(int orderItemId)
+        {
+            Customer customer = new Customer();
+            customer.RemoveProdFromOrder(orderItemId);
+            return RedirectToAction("Index", "Order");
+        }
+
+
+
 
 
 

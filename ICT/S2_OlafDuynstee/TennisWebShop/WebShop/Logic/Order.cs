@@ -8,7 +8,7 @@ namespace Logic
 {
     public class Order
     {
-        public int ID { get; set; }
+        public int OrderItemID { get; set; }
         public int OrderID { get; set; }
         public int ProductID  { get; set; }
         public int Quantity { get; set; }
@@ -22,7 +22,7 @@ namespace Logic
         }
         public Order(int id, int orderId, int productID, int quantity)
         {
-            ID = id;
+            OrderItemID = id;
             OrderID = orderId;
             ProductID = productID;
             Quantity = quantity;
