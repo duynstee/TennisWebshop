@@ -23,7 +23,7 @@
             <td>@product.Price</td>
             <td>@product.Quantity</td>
             <td>@product.Description</td>
-            <td><a asp-controller="Product" asp-action="AddToOrder" asp-route-id="@product.ProductId">Add to order</a></td>
-        </tr>
+            <td><a asp-controller="Product" asp-action="AddProdToOrder" asp-route-productId="@product.ProductId">Add to order</a></td>
+        </tr>    
      }
 </table>

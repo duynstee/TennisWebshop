@@ -40,13 +40,13 @@ namespace WebShop.Controllers
             return View();
         }
 
-        [HttpGet]
+        //[HttpGet("{productId:int}")]
         [Route("/product/AddToOrder/{productId:int}")]
-        public IActionResult AddToOrder(int productId)
+        public ActionResult AddProdToOrder(int productId)
         {
             int userID = 1;
             Customer customer = new Customer();
-            customer.AddProdToOrder(productId);
+            customer.AddProdToOrder(productId /*UserID*/);
             
             return RedirectToAction(nameof(Index));
         }

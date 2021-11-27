@@ -8,7 +8,7 @@ using Interfaces;
 
 namespace Database.Data
 {
-    public class OrderDatabaseManager : OrderInterface
+    public class OrderDatabaseManager : OrderInterface, CustomerInterface
     {
         private string connectionString =
             @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebshopDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
@@ -39,16 +39,15 @@ namespace Database.Data
             return Orders;
         }
 
-        public void AddToOrder(int productId, int orderId)
+        public void AddProdToOrder(int productId)
         {
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
                 
-                using (var query = new SqlCommand("INSERT INTO OrderItem(OrderID, ProductID) Values(@OrderID, @ProductID)", conn))
+                using (var query = new SqlCommand("INSERT INTO OrderItem(ProductID) Values(@ProductID)", conn))
                 {
-                    query.Parameters.AddWithValue("@OrderID", orderId);
+                    //query.Parameters.AddWithValue("@OrderID", orderId);
                     query.Parameters.AddWithValue("@ProductID", productId);
 
                     query.ExecuteNonQuery();

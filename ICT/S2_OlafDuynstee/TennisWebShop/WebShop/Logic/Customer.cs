@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Factory;
+using Interfaces;
 
 namespace Logic
 {
@@ -15,5 +17,11 @@ namespace Logic
         private string Password;
 
         private List<OrderList> ListOrders = new List<OrderList>();
+
+        public void AddProdToOrder(int productID)
+        {
+            CustomerInterface dbMan = CustomerFactory.GetCustomerInterface();
+            dbMan.AddProdToOrder(productID);
+        }
     }
 }

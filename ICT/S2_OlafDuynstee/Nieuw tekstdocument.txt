@@ -1,9 +1,0 @@
-een extra feature implementatie
-Order ophalen uit de database
-
-klassen diagram beter maken (aan dennis vragen) 
-
-databasediagram
-
-week later plaatje projecten uitwerken 
-

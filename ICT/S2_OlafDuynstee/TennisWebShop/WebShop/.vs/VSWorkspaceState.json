@@ -6,7 +6,8 @@
     "\\WebShop\\Controllers",
     "\\WebShop\\Models",
     "\\WebShop\\Views",
-    "\\WebShop\\Views\\Home"
+    "\\WebShop\\Views\\Home",
+    "\\WebShop\\Views\\Product"
   ],
   "SelectedNode": "\\WebShop.sln",
   "PreviewInSolutionExplorer": false
