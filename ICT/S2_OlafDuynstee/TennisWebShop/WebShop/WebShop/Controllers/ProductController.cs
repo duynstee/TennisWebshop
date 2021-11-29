@@ -48,7 +48,6 @@ namespace WebShop.Controllers
             Customer customer = new Customer();
             customer.AddProdToOrder(productId /*UserID*/);
             
-            //return RedirectToAction(nameof(Index));
             return RedirectToAction("Index", "Order");
         }
 
@@ -59,11 +58,6 @@ namespace WebShop.Controllers
             customer.RemoveProdFromOrder(orderItemId);
             return RedirectToAction("Index", "Order");
         }
-
-
-
-
-
 
 
 

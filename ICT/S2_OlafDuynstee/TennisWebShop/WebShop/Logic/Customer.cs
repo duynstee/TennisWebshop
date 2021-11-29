@@ -10,13 +10,13 @@ namespace Logic
 {
     public class Customer
     {
-        private string Name;
-        private string Address;
-        private string PhoneNumber;
-        private string Email;
-        private string Password;
-
-        private List<OrderList> ListOrders = new List<OrderList>();
+        public string CustomerEmail;
+        public string CustomerPassword;
+        public string CustomerName;
+        public string CustomerAddress;
+        public string CustomerPhoneNumber;
+        
+        private List<OrderList> listOrders = new List<OrderList>();
 
         public void AddProdToOrder(int productID)
         {
