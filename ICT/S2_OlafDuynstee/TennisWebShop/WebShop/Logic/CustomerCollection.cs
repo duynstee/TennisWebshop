@@ -38,6 +38,8 @@ namespace Logic
                 customerDto.CustomerAddress = customer.CustomerAddress;
                 customerDto.CustomerPhoneNumber = customer.CustomerPhoneNumber;
 
+                CustomerCollectionInterface dbMan = CustomerFactory.CustomerCollectionInterface();
+                dbMan.CreateCustomer(customerDto);
                 return true;
             }
 

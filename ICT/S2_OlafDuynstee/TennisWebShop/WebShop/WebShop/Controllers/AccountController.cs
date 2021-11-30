@@ -12,32 +12,45 @@ namespace WebShop.Controllers
     {
         public IActionResult Register()
         {
-            return View();
+            RegisterViewModel model = new RegisterViewModel();
+            return View(model);
         }
 
+        [HttpPost]
         public IActionResult RegisterAccount(RegisterViewModel regVM)
         {
-            CustomerCollection customerCollection = new CustomerCollection();
-            
-            Customer customer = new Customer();
-            customer.CustomerEmail = regVM.CustomerEmail;
-            customer.CustomerPassword = regVM.CustomerPassword;
-            customer.CustomerName = regVM.CustomerName;
-            customer.CustomerAddress = regVM.CustomerAddress;
-            customer.CustomerPhoneNumber = regVM.CustomerPhoneNumber;
-
-            if (customerCollection.CreateCustomer(customer) == true)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Product");
+
+                CustomerCollection customerCollection = new CustomerCollection();
+
+                Customer customer = new Customer();
+                customer.CustomerEmail = regVM.CustomerEmail;
+                customer.CustomerPassword = regVM.CustomerPassword;
+                customer.CustomerName = regVM.CustomerName;
+                customer.CustomerAddress = regVM.CustomerAddress;
+                customer.CustomerPhoneNumber = regVM.CustomerPhoneNumber;
+
+                if (customerCollection.CreateCustomer(customer) == true)
+                {
+                    return RedirectToAction("Index", "Product");
+                }
+                else
+                {
+                    return RedirectToAction("Register", "Account");
+                }
+
             }
             else
             {
-                return RedirectToAction("Register", "Account");
+                return View("Register", regVM);
             }
         }
 
-        public IActionResult Login()
+        public IActionResult Login(LoginViewModel logVM)
         {
+            
+            
             return View();
         }
     }

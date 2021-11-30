@@ -35,8 +35,9 @@ namespace Database.Data
             {
                 using (SqlCommand query =
                     new SqlCommand(
-                        "INSERT INTO Customers(CustomerEmail, CustomerPassword, CustomerName, CustomerAddress, CustomerPhoneNumber) VALUES(@Email, @Password, @Name, @Address, @PhoneNumber)"))
+                        "INSERT INTO Customers(CustomerEmail, CustomerPassword, CustomerName, CustomerAddress, CustomerPhoneNumber) VALUES(@Email, @Password, @Name, @Address, @PhoneNumber)", conn))
                 {
+                    conn.Open();
                     query.Parameters.AddWithValue("@Email", customerDto.CustomerEmail);
                     query.Parameters.AddWithValue("@Password", customerDto.CustomerPassword);
                     query.Parameters.AddWithValue("@Name", customerDto.CustomerName);
