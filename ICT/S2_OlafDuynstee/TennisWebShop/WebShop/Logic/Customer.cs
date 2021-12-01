@@ -10,6 +10,7 @@ namespace Logic
 {
     public class Customer
     {
+        public int CustomerID;
         public string CustomerEmail;
         public string CustomerPassword;
         public string CustomerName;

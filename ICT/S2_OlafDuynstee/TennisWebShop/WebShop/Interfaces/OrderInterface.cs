@@ -8,6 +8,6 @@ namespace Interfaces
 {
     public interface OrderInterface
     {
-        List<OrderDto> GetAllOrders();
+        List<OrderDto> GetAllOrders(int customerID);
     }
 }

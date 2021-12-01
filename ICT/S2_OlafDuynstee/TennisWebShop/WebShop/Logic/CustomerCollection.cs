@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Database.Data;
 using Factory;
 using Interfaces;
 
@@ -53,15 +51,20 @@ namespace Logic
         {
             CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface();
             var customerDto = dbMan.LoginCustomer(customer.CustomerEmail);
+
+            Customer _customer = new Customer();
+            customerDto.CustomerID = _customer.CustomerID;
+            customerDto.CustomerEmail = _customer.CustomerEmail;
+            customerDto.CustomerName = _customer.CustomerName;
             if (customerDto.CustomerPassword == customer.CustomerPassword)
             {
                 customer.LoggedIn = true;
-                return customer;                                                                
+                return _customer;
             }
             else
             {
                 customer.LoggedIn = false;
-                return customer;
+                return _customer;
             }
         }
     }

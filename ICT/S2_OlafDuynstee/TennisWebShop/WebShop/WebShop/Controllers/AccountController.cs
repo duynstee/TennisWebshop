@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Threading.Tasks;
 using WebShop.Models;
 using Logic;
+using Microsoft.AspNetCore.Session;
+using Microsoft.AspNetCore.Http;
 
 namespace WebShop.Controllers
 {
@@ -55,17 +58,19 @@ namespace WebShop.Controllers
         [HttpPost]
         public IActionResult LoginCustomer(LoginViewModel logVM)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
                 CustomerCollection customerCollection = new CustomerCollection();
-                
                 Customer _customer = new Customer();
-                logVM.CustomerEmail = _customer.CustomerEmail;
-                logVM.CustomerPassword = _customer.CustomerPassword;
+                _customer.CustomerEmail = logVM.CustomerEmail;
+                _customer.CustomerPassword = logVM.CustomerPassword;
+                
                 var customer = customerCollection.LoginCustomer(_customer);
 
                 if (customer.LoggedIn == true)
                 {
+                    HttpContext.Session.SetInt32("CustomerID", customer.CustomerID);
+                    HttpContext.Session.SetString("CustomerName", customer.CustomerName);
                     return RedirectToAction("Index", "Product");
                 }
                 else
