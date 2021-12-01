@@ -8,6 +8,7 @@ namespace Interfaces
 {
     public class CustomerDto
     {
+        public int CustomerID { get; set; }
         public string CustomerEmail { get; set; }
         public string CustomerPassword { get; set; }
         public string CustomerName { get; set; }

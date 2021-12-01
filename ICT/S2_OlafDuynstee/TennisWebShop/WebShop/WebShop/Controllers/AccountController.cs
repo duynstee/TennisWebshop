@@ -21,7 +21,6 @@ namespace WebShop.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 CustomerCollection customerCollection = new CustomerCollection();
 
                 Customer customer = new Customer();
@@ -47,11 +46,38 @@ namespace WebShop.Controllers
             }
         }
 
-        public IActionResult Login(LoginViewModel logVM)
+        public IActionResult Login()
         {
-            
-            
-            return View();
+            LoginViewModel logModel = new LoginViewModel();
+            return View(logModel);
         }
+
+        [HttpPost]
+        public IActionResult LoginCustomer(LoginViewModel logVM)
+        {
+            if (ModelState.IsValid) 
+            {
+                CustomerCollection customerCollection = new CustomerCollection();
+                
+                Customer _customer = new Customer();
+                logVM.CustomerEmail = _customer.CustomerEmail;
+                logVM.CustomerPassword = _customer.CustomerPassword;
+                var customer = customerCollection.LoginCustomer(_customer);
+
+                if (customer.LoggedIn == true)
+                {
+                    return RedirectToAction("Index", "Product");
+                }
+                else
+                {
+                    return RedirectToAction("Login", logVM);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", logVM);
+            }
+        }
+
     }
 }

@@ -15,7 +15,8 @@ namespace Logic
         public string CustomerName;
         public string CustomerAddress;
         public string CustomerPhoneNumber;
-        
+        public bool LoggedIn = false;
+
         private List<OrderList> listOrders = new List<OrderList>();
 
         public void AddProdToOrder(int productID)

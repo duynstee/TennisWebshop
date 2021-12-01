@@ -15,7 +15,7 @@ namespace Factory
             return new OrderDatabaseManager();
         }
 
-        public static CustomerCollectionInterface CustomerCollectionInterface()
+        public static CustomerCollectionInterface GetCustomerCollectionInterface()
         {
             return new CustomerDatabaseManager();
         }

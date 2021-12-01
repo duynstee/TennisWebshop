@@ -8,7 +8,8 @@ namespace Interfaces
 {
     public interface CustomerCollectionInterface
     {
-        int CheckEmail(string CustomerEmail);
+        int CheckEmail(string customerEmail);
         void CreateCustomer(CustomerDto customerDto);
+        CustomerDto LoginCustomer(string customerEmail);
     }
 }

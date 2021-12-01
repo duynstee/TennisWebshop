@@ -14,7 +14,7 @@ namespace Logic
     {
         private bool CheckEmail(string customerEmail)
         {
-            CustomerCollectionInterface dbMan = CustomerFactory.CustomerCollectionInterface();
+            CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface();
 
             if (dbMan.CheckEmail(customerEmail) == 0)
             {
@@ -38,7 +38,7 @@ namespace Logic
                 customerDto.CustomerAddress = customer.CustomerAddress;
                 customerDto.CustomerPhoneNumber = customer.CustomerPhoneNumber;
 
-                CustomerCollectionInterface dbMan = CustomerFactory.CustomerCollectionInterface();
+                CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface();
                 dbMan.CreateCustomer(customerDto);
                 return true;
             }
@@ -46,6 +46,22 @@ namespace Logic
             else
             {
                 return false; 
+            }
+        }
+
+        public Customer LoginCustomer(Customer customer)
+        {
+            CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface();
+            var customerDto = dbMan.LoginCustomer(customer.CustomerEmail);
+            if (customerDto.CustomerPassword == customer.CustomerPassword)
+            {
+                customer.LoggedIn = true;
+                return customer;                                                                
+            }
+            else
+            {
+                customer.LoggedIn = false;
+                return customer;
             }
         }
     }
