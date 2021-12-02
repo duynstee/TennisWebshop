@@ -13,14 +13,15 @@ namespace Database.Data
         private string connectionString =
             @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WebshopDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
-        public List<OrderDto> GetAllOrders()
+        public List<OrderDto> GetAllOrders(int customerID)
         {
             List<OrderDto> Orders = new List<OrderDto>();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand query = new SqlCommand("select * from Orders inner join OrderItem on Orders.OrderID=OrderItem.OrderID inner join Products on OrderItem.ProductID=Products.ProductID", conn))
+                using (SqlCommand query = new SqlCommand("select * from Orders inner join OrderItem on Orders.OrderID=OrderItem.OrderID inner join Products on OrderItem.ProductID=Products.ProductID WHERE CustomerID = @CustomerID", conn))
                 {
+                    query.Parameters.AddWithValue("@CustomerID", customerID);
                     conn.Open();
 
                     var reader = query.ExecuteReader();

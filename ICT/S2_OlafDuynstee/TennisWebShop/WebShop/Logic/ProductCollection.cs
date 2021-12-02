@@ -14,7 +14,6 @@ namespace Logic
     {
         public List<Product> GetProductList()
         {
-            //ProductDatabaseManager dbMan = new ProductDatabaseManager();
             ProductInterface dbMan = ProductFactory.GetProductInterface();
             
             var products = dbMan.GetAllProducts();

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Logic;
+using Microsoft.AspNetCore.Http;
 using WebShop.Models;
 
 namespace WebShop.Controllers
@@ -14,7 +15,7 @@ namespace WebShop.Controllers
 
         public ActionResult Index()
         {
-            var orders = OrderList.GetOrderList();
+            var orders = OrderList.GetOrderList((int)HttpContext.Session.GetInt32("CustomerID"));
 
             List<OrderViewModel> orderViewModelList = new List<OrderViewModel>();
 

@@ -11,15 +11,14 @@ namespace Logic
 {
     public class OrderList
     {
-        public List<Order> GetOrderList()
+        public List<Order> GetOrderList(int customerID)
         {
             OrderInterface dbMan = OrderFactory.GetOrderInterface();
 
-            var orders = dbMan.GetAllOrders();
+            var orders = dbMan.GetAllOrders(customerID);
 
             List<Order> orderIDList = new List<Order>();
             
-
             foreach (var order in orders)
             {
                 Order ord = new Order();
@@ -30,7 +29,6 @@ namespace Logic
                 ord.Quantity = order.Quantity;
                 orderIDList.Add(ord);
             }
-
             return orderIDList;
         }
     }
