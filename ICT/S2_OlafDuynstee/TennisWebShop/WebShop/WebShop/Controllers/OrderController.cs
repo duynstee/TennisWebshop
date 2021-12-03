@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Logic;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Schema;
 using WebShop.Models;
 
 namespace WebShop.Controllers
@@ -15,24 +17,35 @@ namespace WebShop.Controllers
 
         public ActionResult Index()
         {
-            var orders = OrderList.GetOrderList((int)HttpContext.Session.GetInt32("CustomerID"));
+            // wanneer dit null is geen foutmelding vraag?
 
-            List<OrderViewModel> orderViewModelList = new List<OrderViewModel>();
+            Customer customerSession = JsonConvert.DeserializeObject<Customer>(HttpContext.Session.GetString("CustomerSession"));
 
-            foreach (var order in orders)
+            if (customerSession != null)
             {
-                OrderViewModel ordVM = new OrderViewModel();
+                var orders = OrderList.GetOrderList(customerSession.CustomerID);
 
-                ordVM.OrderItemId = order.OrderItemID;
-                ordVM.ProductName = order.ProductName;
-                ordVM.Price = order.Price;
-                ordVM.Size = order.Size;
-                ordVM.Quantity = order.Quantity;
-                orderViewModelList.Add(ordVM);
+                List<OrderViewModel> orderViewModelList = new List<OrderViewModel>();
+
+                foreach (var order in orders)
+                {
+                    OrderViewModel ordVM = new OrderViewModel();
+
+                    ordVM.OrderItemId = order.OrderItemID;
+                    ordVM.ProductName = order.ProductName;
+                    ordVM.Price = order.Price;
+                    ordVM.Size = order.Size;
+                    ordVM.Quantity = order.Quantity;
+                    orderViewModelList.Add(ordVM);
+                }
+
+                ViewBag.Order = orderViewModelList;
+                return View();
             }
-
-            ViewBag.Order = orderViewModelList;
-            return View();
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
     }
 }

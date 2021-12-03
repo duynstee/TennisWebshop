@@ -29,6 +29,28 @@ namespace Database.Data
             }
         }
 
+        public string CheckPassword(string email)
+        {
+            string oldPassword = "0";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand query =
+                    new SqlCommand("Select * from Customers where CustomerEmail = @CustomerEmail", conn))
+                {
+                    conn.Open();
+                    query.Parameters.AddWithValue("@CustomerEmail", email);
+
+                    var reader = query.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        oldPassword = reader.GetString(2);
+                    }
+                }
+            }
+
+            return oldPassword;
+        }
+
         public void CreateCustomer(CustomerDto customerDto)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -44,6 +66,29 @@ namespace Database.Data
                     query.Parameters.AddWithValue("@Address", customerDto.CustomerAddress);
                     query.Parameters.AddWithValue("@PhoneNumber", customerDto.CustomerPhoneNumber);
 
+                    query.ExecuteNonQuery();
+                    conn.Close();
+                }
+
+                int customerId = 0;
+                using (SqlCommand query =
+                    new SqlCommand("select * from Customers where CustomerEmail = @CustomerEmail", conn))
+                {
+                    conn.Open();
+                    query.Parameters.AddWithValue("@CustomerEmail", customerDto.CustomerEmail);
+
+                    var reader = query.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        customerId = reader.GetInt32(0);
+                    }
+                    conn.Close();
+                }
+
+                using (SqlCommand query = new SqlCommand("INSERT INTO Orders(CustomerID) VALUES (@CustomerID)", conn))
+                {
+                    conn.Open();
+                    query.Parameters.AddWithValue("@CustomerID", customerId);
                     query.ExecuteNonQuery();
                 }
             }
@@ -70,6 +115,21 @@ namespace Database.Data
                 }
             }
             return custDto;
+        }
+
+        public void ChangePassword(string email, string newPassword)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand query = new SqlCommand("UPDATE Customers SET CustomerPassword = @newPassword WHERE CustomerEmail = @CustomerEmail", conn))
+                {
+                    conn.Open();
+                    query.Parameters.AddWithValue("@newPassword", newPassword);
+                    query.Parameters.AddWithValue("@CustomerEmail", email);
+
+                    query.ExecuteNonQuery();
+                }
+            }   
         }
     }
 }

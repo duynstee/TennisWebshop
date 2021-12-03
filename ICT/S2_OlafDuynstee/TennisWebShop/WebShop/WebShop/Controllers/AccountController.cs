@@ -8,6 +8,7 @@ using WebShop.Models;
 using Logic;
 using Microsoft.AspNetCore.Session;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace WebShop.Controllers
 {
@@ -35,7 +36,7 @@ namespace WebShop.Controllers
 
                 if (customerCollection.CreateCustomer(customer) == true)
                 {
-                    return RedirectToAction("Index", "Product");
+                    return RedirectToAction("Login", "Account");
                 }
                 else
                 {
@@ -61,16 +62,16 @@ namespace WebShop.Controllers
             if (ModelState.IsValid)
             {
                 CustomerCollection customerCollection = new CustomerCollection();
-                Customer _customer = new Customer();
-                _customer.CustomerEmail = logVM.CustomerEmail;
-                _customer.CustomerPassword = logVM.CustomerPassword;
-                
-                var customer = customerCollection.LoginCustomer(_customer);
+                Customer loginCustomer = new Customer();
+                loginCustomer.CustomerEmail= logVM.CustomerEmail;
+                loginCustomer.CustomerPassword = logVM.CustomerPassword;
+
+                var customer = customerCollection.LoginCustomer(loginCustomer);
 
                 if (customer.LoggedIn == true)
                 {
-                    HttpContext.Session.SetInt32("CustomerID", customer.CustomerID);
-                    HttpContext.Session.SetString("CustomerName", customer.CustomerName);
+                    // set the value into a session key
+                    HttpContext.Session.SetString("CustomerSession", JsonConvert.SerializeObject(customer));
                     return RedirectToAction("Index", "Product");
                 }
                 else
@@ -84,5 +85,46 @@ namespace WebShop.Controllers
             }
         }
 
+        public IActionResult LogoutCustomer()
+        {
+            HttpContext.Session.Remove("CustomerSession");
+            return RedirectToAction("Login", "Account");
+        }
+
+        public IActionResult ChangePassword()
+        {
+            ChangePasswordViewModel cpVM = new ChangePasswordViewModel();
+            return View(cpVM);
+        }
+
+        public IActionResult ChangePasswordAction(ChangePasswordViewModel cpVM)
+        {
+            if (ModelState.IsValid)
+            {
+                string newPassword = cpVM.CustomerNewPassword;
+                
+                CustomerCollection customerCollection = new CustomerCollection();
+                var customerSession =
+                    JsonConvert.DeserializeObject<Customer>(HttpContext.Session.GetString("CustomerSession"));
+                
+                string password = cpVM.CustomerPassword;
+                string email = customerSession.CustomerEmail;
+
+                var changeSuccessful = customerCollection.ChangePassword(email,password,  newPassword);
+                if (changeSuccessful == true)
+                {
+                    return RedirectToAction("Login", "Account");
+                }
+                else
+                {
+                    return RedirectToAction("ChangePassword", "Account");
+                }
+            }
+            else
+            {
+                return RedirectToAction("ChangePassword", "Account");
+            }
+            
+        }
     }
 }

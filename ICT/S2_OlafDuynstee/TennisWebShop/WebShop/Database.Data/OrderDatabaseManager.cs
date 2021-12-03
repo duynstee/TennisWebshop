@@ -41,17 +41,31 @@ namespace Database.Data
             return Orders;
         }
 
-        public void AddProdToOrder(int productId)
+        public void AddProdToOrder(int productId, int customerID)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
+                int orderId = 0;
                 
-                using (var query = new SqlCommand("INSERT INTO OrderItem(ProductID) Values(@ProductID)", conn))
+                using (SqlCommand query =
+                    new SqlCommand("SELECT OrderID FROM orders WHERE CustomerID = @CustomerID", conn))
                 {
-                    //query.Parameters.AddWithValue("@OrderID", orderId);
+                    query.Parameters.AddWithValue("@CustomerID", customerID);
+                    conn.Open();
+                    
+                    var reader = query.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        orderId = reader.GetInt32(0);
+                    }
+                    conn.Close();
+                }
+              
+                using (var query = new SqlCommand("INSERT INTO OrderItem(ProductID, OrderID) Values(@ProductID, @OrderID)", conn))
+                {
                     query.Parameters.AddWithValue("@ProductID", productId);
-
+                    query.Parameters.AddWithValue("@OrderID", orderId);
+                    conn.Open();
                     query.ExecuteNonQuery();
                 }
             }

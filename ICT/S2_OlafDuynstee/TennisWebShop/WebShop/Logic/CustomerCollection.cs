@@ -25,6 +25,23 @@ namespace Logic
             }
         }
 
+        private bool CheckPassword(string email, string insertedPassword)
+        {
+            CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface();
+            string password;
+            password = dbMan.CheckPassword(email);
+
+            if (password == insertedPassword)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
         public bool CreateCustomer(Customer customer)
         {
             if (CheckEmail(customer.CustomerEmail) == true)
@@ -47,24 +64,40 @@ namespace Logic
             }
         }
 
-        public Customer LoginCustomer(Customer customer)
+        public Customer LoginCustomer(Customer customerLogin)
         {
             CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface();
-            var customerDto = dbMan.LoginCustomer(customer.CustomerEmail);
-
-            Customer _customer = new Customer();
-            customerDto.CustomerID = _customer.CustomerID;
-            customerDto.CustomerEmail = _customer.CustomerEmail;
-            customerDto.CustomerName = _customer.CustomerName;
-            if (customerDto.CustomerPassword == customer.CustomerPassword)
+            CustomerDto customerDto = dbMan.LoginCustomer(customerLogin.CustomerEmail);
+            
+            Customer customerData = new Customer();
+            customerData.CustomerID = customerDto.CustomerID;
+            customerData.CustomerEmail = customerDto.CustomerEmail;
+            customerData.CustomerName = customerDto.CustomerName;
+            customerData.CustomerPassword = customerDto.CustomerPassword;
+            if (customerData.CustomerPassword == customerLogin.CustomerPassword)
             {
-                customer.LoggedIn = true;
-                return _customer;
+                customerData.LoggedIn = true;
+                return customerData;
             }
             else
             {
-                customer.LoggedIn = false;
-                return _customer;
+                customerData.LoggedIn = false;
+                return customerData;
+            }
+        }
+
+        public bool ChangePassword(string CustomerEmail, string CustomerPassword, string CustomerNewPassword)
+        {
+            var passwordTrue = CheckPassword(CustomerEmail, CustomerPassword);
+            if (passwordTrue == true)
+            {
+                CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface();
+                dbMan.ChangePassword(CustomerEmail, CustomerNewPassword);
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

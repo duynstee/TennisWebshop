@@ -20,10 +20,10 @@ namespace Logic
 
         private List<OrderList> listOrders = new List<OrderList>();
 
-        public void AddProdToOrder(int productID)
+        public void AddProdToOrder(int productID, int customerID)
         {
             CustomerInterface dbMan = CustomerFactory.GetCustomerInterface();
-            dbMan.AddProdToOrder(productID);
+            dbMan.AddProdToOrder(productID, customerID);
         }
 
         public void RemoveProdFromOrder(int orderItemID)

@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Reflection.Metadata.Ecma335;
 using Logic;
 using WebShop.Models;
+using Newtonsoft.Json;
 
 namespace WebShop.Controllers
 {
@@ -44,11 +45,21 @@ namespace WebShop.Controllers
         [Route("/product/AddToOrder/{productId:int}")]
         public ActionResult AddProdToOrder(int productId)
         {
-            int userID = 1;
-            Customer customer = new Customer();
-            customer.AddProdToOrder(productId /*UserID*/);
+            // get session into
+            var sessionCustomer =
+                JsonConvert.DeserializeObject<Customer>(HttpContext.Session.GetString("CustomerSession"));
+
+            if (sessionCustomer != null)
+            {
+                sessionCustomer.AddProdToOrder(productId, sessionCustomer.CustomerID);
+                return RedirectToAction("Index", "Order");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
             
-            return RedirectToAction("Index", "Order");
+            
         }
 
         [Route("/product/RemoveFromOrder/{orderItemId:int}")]
