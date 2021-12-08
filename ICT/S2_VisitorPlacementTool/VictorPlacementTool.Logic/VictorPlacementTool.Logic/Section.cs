@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace VictorPlacementTool.Logic
 {
-    class Section
+    public class Section
     {
+        public string SectionLetter;
         public List<Row> Rows;
     }
 }

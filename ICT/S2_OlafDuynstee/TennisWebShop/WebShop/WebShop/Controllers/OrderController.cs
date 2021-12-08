@@ -18,8 +18,10 @@ namespace WebShop.Controllers
         public ActionResult Index()
         {
             // wanneer dit null is geen foutmelding vraag?
+            // if sessionstring
 
-            Customer customerSession = JsonConvert.DeserializeObject<Customer>(HttpContext.Session.GetString("CustomerSession"));
+            string sessionString = HttpContext.Session.GetString("CustomerSession");
+            Customer customerSession = JsonConvert.DeserializeObject<Customer>(sessionString);
 
             if (customerSession != null)
             {

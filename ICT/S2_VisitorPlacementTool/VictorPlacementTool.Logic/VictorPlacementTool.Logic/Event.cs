@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VictorPlacementTool.Logic
 {
-    class Event
+    public class Event
     {
         public string Name;
         public DateTime Date;
@@ -16,5 +16,6 @@ namespace VictorPlacementTool.Logic
             this.Name = name;
             this.Date = date;
         }
+
     }
 }

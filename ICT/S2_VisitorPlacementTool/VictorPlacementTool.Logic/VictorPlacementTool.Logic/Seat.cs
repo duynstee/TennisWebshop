@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace VictorPlacementTool.Logic
 {
-    class Seat
+    public class Seat
     {
-        public string Name;
+
     }
 }

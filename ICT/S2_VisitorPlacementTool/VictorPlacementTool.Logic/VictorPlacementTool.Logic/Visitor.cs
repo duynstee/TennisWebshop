@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace VictorPlacementTool.Logic
 {
-    class Visitor
+    public class Visitor
     {
+        public DateTime Birthday;
 
+        public Visitor()
+        {
+            
+        }
     }
 }

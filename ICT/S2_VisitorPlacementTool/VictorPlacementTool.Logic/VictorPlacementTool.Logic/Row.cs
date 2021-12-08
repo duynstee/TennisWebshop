@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace VictorPlacementTool.Logic
 {
-    class Row
+    public class Row 
     {
+        public int RowNumber;
         public List<Seat> Seats;
     }
 }
