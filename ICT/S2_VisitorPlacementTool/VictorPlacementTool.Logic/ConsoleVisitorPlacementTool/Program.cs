@@ -8,10 +8,12 @@ namespace ConsoleVisitorPlacementTool
     {
         static void Main(string[] args)
         {
+            Event _event = new Event();
             Organizer organizer = new Organizer();
             Console.WriteLine("Insert visitors:");
-            organizer.CreateVisitors(Convert.ToInt32(Console.ReadLine()));
-  
+            _event.CreateVisitors(Convert.ToInt32(Console.ReadLine()));
+
+            
 
             Console.ReadLine();
         }

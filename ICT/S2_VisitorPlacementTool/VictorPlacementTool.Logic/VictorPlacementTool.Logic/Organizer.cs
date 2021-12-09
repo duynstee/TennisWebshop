@@ -1,28 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace VictorPlacementTool.Logic
 {
     public class Organizer
     {
-        public List<Visitor> Visitors = new List<Visitor>();
-        public void CreateEvent()
+        private List<Event> eventList = new List<Event>();  
+
+
+        public Organizer()
         {
-            //Event Event = new Event();
+            
         }
 
-        public void CreateVisitors(int totalVisitors)
+
+        public void CreateEvent(string eventName, DateTime eventDate)
         {
-            for (int i = 0; i < totalVisitors; i++)
-            {
-                Visitor visitor = new Visitor();
-                Visitors.Add(visitor);
-            }
+            Event _event = new Event(eventName, eventDate);
         }
+
+
     }
 }
