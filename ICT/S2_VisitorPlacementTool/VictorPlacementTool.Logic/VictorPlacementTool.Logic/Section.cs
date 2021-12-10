@@ -9,7 +9,7 @@ namespace VictorPlacementTool.Logic
     public class Section
     {
         public string SectionLetter;
-        public List<Row> Rows;
+        public List<Row> Rows = new List<Row>();
         public Section(string sectionCode, int totalRows, int totalSeats)
         {
             for (int i = 0; i < totalRows; i++)

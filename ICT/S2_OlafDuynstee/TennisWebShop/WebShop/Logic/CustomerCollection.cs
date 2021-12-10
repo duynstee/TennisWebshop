@@ -100,5 +100,20 @@ namespace Logic
                 return false;
             }
         }
+
+        public Customer GetCustomerInfo(string customerEmail)
+        {
+            CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface();
+            CustomerDto customerDto = dbMan.GetCustomerInfo(customerEmail);
+
+            Customer customerData = new Customer();
+            customerData.CustomerID = customerDto.CustomerID;
+            customerData.CustomerEmail = customerDto.CustomerEmail;
+            customerData.CustomerName = customerDto.CustomerName;
+            customerData.CustomerAddress = customerDto.CustomerAddress;
+            customerData.CustomerPhoneNumber = customerDto.CustomerPhoneNumber;
+
+            return customerData;
+        }
     }
 }

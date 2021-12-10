@@ -24,13 +24,6 @@ namespace VictorPlacementTool.Logic
             this.Date = date;
         }
 
-
-
-        public void CreateEvent()
-        {
-            //Event Event = new Event();
-        }
-
         public void CreateVisitors(int totalVisitors)
         {
             for (int i = 0; i < totalVisitors; i++)
@@ -46,7 +39,28 @@ namespace VictorPlacementTool.Logic
             Section section = new Section(sectioncode, rows, seats);
             currentSectionNumber++;
             Sections.Add(section);
+        }
 
+        public void SeatToVisitor()
+        {
+            foreach (var addvisitor in Visitors)
+            {
+                foreach (var section in Sections)
+                {
+                    foreach (var row in section.Rows)
+                    {
+                        foreach (var seat in row.Seats)
+                        {
+                            if (seat.SeatTaken == false)
+                            {
+                                seat.SeatTaken = true;
+                                seat.visitor = addvisitor;
+                                addvisitor.seatCode = seat.seatCode;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

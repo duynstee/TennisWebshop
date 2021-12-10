@@ -17,11 +17,10 @@ namespace VictorPlacementTool.Logic
         }
 
 
-        public void CreateEvent(string eventName, DateTime eventDate)
+        public Event CreateEvent(string eventName, DateTime eventDate)
         {
             Event _event = new Event(eventName, eventDate);
+            return _event;
         }
-
-
     }
 }

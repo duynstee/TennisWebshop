@@ -9,7 +9,8 @@ namespace VictorPlacementTool.Logic
     public class Visitor
     {
         public DateTime Birthday;
-
+        public bool hasSeat;
+        public string seatCode;
         public Visitor()
         {
             

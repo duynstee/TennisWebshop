@@ -9,7 +9,7 @@ namespace VictorPlacementTool.Logic
     public class Row 
     {
         public int RowNumber;
-        public List<Seat> Seats;
+        public List<Seat> Seats = new List<Seat>();
 
         public Row(string sectionCode, int rowNumber, int totalSeats)
         {

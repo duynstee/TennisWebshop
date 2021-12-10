@@ -131,5 +131,31 @@ namespace Database.Data
                 }
             }   
         }
+
+        public CustomerDto GetCustomerInfo(string customerEmail)
+        {
+            CustomerDto custDto = new CustomerDto();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand query =
+                    new SqlCommand("Select * From Customers Where CustomerEmail = @CustomerEmail", conn))
+                {
+                    conn.Open();
+                    query.Parameters.AddWithValue("@CustomerEmail", customerEmail);
+
+                    var reader = query.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        custDto.CustomerID = reader.GetInt32(0);
+                        custDto.CustomerEmail = reader.GetString(1);
+                        custDto.CustomerPassword = reader.GetString(2);
+                        custDto.CustomerName = reader.GetString(3);
+                        custDto.CustomerAddress = reader.GetString(4);
+                        custDto.CustomerPhoneNumber = reader.GetString(5);
+                    }
+                }
+            }
+            return custDto;
+        }
     }
 }

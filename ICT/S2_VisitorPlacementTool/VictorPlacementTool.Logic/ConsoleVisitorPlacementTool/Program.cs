@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using VictorPlacementTool.Logic;
 
 
@@ -8,12 +9,30 @@ namespace ConsoleVisitorPlacementTool
     {
         static void Main(string[] args)
         {
-            Event _event = new Event();
             Organizer organizer = new Organizer();
-            Console.WriteLine("Insert visitors:");
-            _event.CreateVisitors(Convert.ToInt32(Console.ReadLine()));
 
+            var newEvent = organizer.CreateEvent("muziekEvent", DateTime.Now);
+
+            Console.WriteLine("Insert visitors:");
+            newEvent.CreateVisitors(Convert.ToInt32(Console.ReadLine())); 
             
+            newEvent.CreateSection(3, 3);
+            newEvent.CreateSection(2, 3);
+
+            foreach (var section in newEvent.Sections)
+            {
+                Console.WriteLine(newEvent.Sections);
+            }
+            
+            
+            newEvent.SeatToVisitor();
+
+            foreach (var vistor in newEvent.Visitors)
+            {
+                Console.WriteLine(vistor.ToString());
+            }
+
+
 
             Console.ReadLine();
         }

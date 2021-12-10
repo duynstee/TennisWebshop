@@ -13,5 +13,6 @@ namespace Interfaces
         void ChangePassword(string email, string newPassword);
         void CreateCustomer(CustomerDto customerDto);
         CustomerDto LoginCustomer(string customerEmail);
+        CustomerDto GetCustomerInfo(string customerEmail);
     }
 }
