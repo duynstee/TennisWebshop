@@ -8,10 +8,22 @@ namespace VictorPlacementTool.Logic
 {
     public class Visitor
     {
+        public string Name { get; set; }
         public DateTime Birthday;
         public bool hasSeat;
         public string seatCode;
+
         public Visitor()
+        {
+            
+        }
+        
+        public Visitor(string name)
+        {
+            this.Name = name;
+        }
+
+        public void AddVisitor()
         {
             
         }

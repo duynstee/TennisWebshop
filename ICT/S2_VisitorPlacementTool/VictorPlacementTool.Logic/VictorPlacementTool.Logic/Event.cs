@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json;
@@ -11,6 +12,7 @@ namespace VictorPlacementTool.Logic
     public class Event
     {
         public List<Visitor> Visitors = new List<Visitor>();
+        public List<Visitor> PlacedVisitors = new List<Visitor>();
         public List<Section> Sections = new List<Section>();
 
         public string Name;
@@ -35,7 +37,8 @@ namespace VictorPlacementTool.Logic
 
         public void CreateSection(int rows, int seats)
         {
-            string sectioncode = ((char)currentSectionNumber).ToString();
+            //
+            string sectioncode = ((char) currentSectionNumber).ToString();
             Section section = new Section(sectioncode, rows, seats);
             currentSectionNumber++;
             Sections.Add(section);
@@ -45,21 +48,28 @@ namespace VictorPlacementTool.Logic
         {
             foreach (var addvisitor in Visitors)
             {
-                foreach (var section in Sections)
+                addvisitor.AddVisitor();
+
+                /*foreach (var section in Sections)
                 {
                     foreach (var row in section.Rows)
                     {
                         foreach (var seat in row.Seats)
                         {
-                            if (seat.SeatTaken == false)
+                                if (seat.SeatTaken == false && addvisitor.hasSeat == false)
                             {
                                 seat.SeatTaken = true;
                                 seat.visitor = addvisitor;
                                 addvisitor.seatCode = seat.seatCode;
+                                addvisitor.hasSeat = true;
+                                Console.WriteLine(seat.visitor + "has seat: " + addvisitor.seatCode);
+                                Visitors.Remove(addvisitor);
+                                PlacedVisitors.Add(addvisitor);
                             }
                         }
                     }
-                }
+                }*/
+
             }
         }
     }

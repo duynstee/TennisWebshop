@@ -19,19 +19,8 @@ namespace ConsoleVisitorPlacementTool
             newEvent.CreateSection(3, 3);
             newEvent.CreateSection(2, 3);
 
-            foreach (var section in newEvent.Sections)
-            {
-                Console.WriteLine(newEvent.Sections);
-            }
-            
-            
+
             newEvent.SeatToVisitor();
-
-            foreach (var vistor in newEvent.Visitors)
-            {
-                Console.WriteLine(vistor.ToString());
-            }
-
 
 
             Console.ReadLine();

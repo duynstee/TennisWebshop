@@ -15,8 +15,8 @@ namespace VictorPlacementTool.Logic
         {
             for (int i = 0; i < totalSeats; i++)
             {
-                int seatNumber = i++;
-                Seat seat = new Seat(sectionCode, rowNumber, totalSeats);
+                int seatNumber = i + 1;
+                Seat seat = new Seat(sectionCode, rowNumber, seatNumber);
                 Seats.Add(seat);
             }
         }
