@@ -48,7 +48,7 @@ namespace VictorPlacementTool.Logic
         {
             foreach (var addvisitor in Visitors)
             {
-                addvisitor.AddVisitor();
+                addvisitor.AddVisitor(addvisitor, Sections );
 
                 /*foreach (var section in Sections)
                 {

@@ -23,9 +23,12 @@ namespace VictorPlacementTool.Logic
             this.Name = name;
         }
 
-        public void AddVisitor()
+        public void AddVisitor(Visitor visitor, List<Section> sections)
         {
-            
+            foreach (var section in sections)
+            {
+                
+            }
         }
     }
 }

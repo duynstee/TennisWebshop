@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Database.Data;
 using Interfaces;
+using TestDAL;
 
 namespace Factory
 {
@@ -15,9 +16,19 @@ namespace Factory
             return new OrderDatabaseManager();
         }
 
+        public static CustomerInterface GetCustomerInterface(bool test)
+        {
+            return new TestOrderDatabaseManager();
+        }
+
         public static CustomerCollectionInterface GetCustomerCollectionInterface()
         {
             return new CustomerDatabaseManager();
+        }
+
+        public static CustomerCollectionInterface GetCustomerCollectionInterface(bool test)
+        {
+            return new TestCustomerDatabaseManager();
         }
     }
 }

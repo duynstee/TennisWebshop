@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VictorPlacementTool.Logic", "VictorPlacementTool.Logic\VictorPlacementTool.Logic.csproj", "{25E3DC22-DE4C-44C4-8F37-7F46E0644D17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleVisitorPlacementTool", "ConsoleVisitorPlacementTool\ConsoleVisitorPlacementTool.csproj", "{7D5E7E79-162B-4707-B338-A35D201F9642}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleVisitorPlacementTool", "ConsoleVisitorPlacementTool\ConsoleVisitorPlacementTool.csproj", "{7D5E7E79-162B-4707-B338-A35D201F9642}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VictorPlacementTool.LogicTests", "VictorPlacementTool.LogicTests\VictorPlacementTool.LogicTests.csproj", "{F9F684F8-ADCE-4C45-BE8E-C3BA6A0A156E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7D5E7E79-162B-4707-B338-A35D201F9642}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D5E7E79-162B-4707-B338-A35D201F9642}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D5E7E79-162B-4707-B338-A35D201F9642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9F684F8-ADCE-4C45-BE8E-C3BA6A0A156E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9F684F8-ADCE-4C45-BE8E-C3BA6A0A156E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9F684F8-ADCE-4C45-BE8E-C3BA6A0A156E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9F684F8-ADCE-4C45-BE8E-C3BA6A0A156E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
