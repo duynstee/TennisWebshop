@@ -7,7 +7,7 @@ using Interfaces;
 
 namespace TestDAL
 {
-    public class TestProductDatabaseManager
+    public class TestProductDatabaseManager : ProductInterface
     {
         public List<ProductDto> GetAllProducts()
         {

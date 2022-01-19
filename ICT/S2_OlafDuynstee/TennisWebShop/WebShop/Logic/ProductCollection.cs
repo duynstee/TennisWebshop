@@ -12,9 +12,20 @@ namespace Logic
 {
     public class ProductCollection
     {
+        public bool test { get; set; }
+
+        public ProductCollection()
+        {
+            test = false;
+        }
+
+        public ProductCollection(bool test)
+        {
+            this.test = test;
+        }
         public List<Product> GetProductList()
         {
-            ProductInterface dbMan = ProductFactory.GetProductInterface();
+            ProductInterface dbMan = ProductFactory.GetProductInterface(test);
             
             var products = dbMan.GetAllProducts();
 

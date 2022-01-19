@@ -20,5 +20,21 @@ namespace VictorPlacementTool.Logic
                 Seats.Add(seat);
             }
         }
+
+        public void PlaceAll(List<Visitor> visitorsToPlace)
+        {
+            foreach (var seat in Seats)
+            {
+                seat.PlaceAll(visitorsToPlace);
+            }
+        }
+
+        public void GetVisitor()
+        {
+            foreach (var seat in Seats)
+            {
+                seat.GetVisitor();
+            }
+        }
     }
 }

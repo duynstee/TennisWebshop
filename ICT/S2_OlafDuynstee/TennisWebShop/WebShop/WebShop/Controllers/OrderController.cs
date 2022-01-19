@@ -21,29 +21,31 @@ namespace WebShop.Controllers
             // if sessionstring
 
             string sessionString = HttpContext.Session.GetString("CustomerSession");
-            Customer customerSession = JsonConvert.DeserializeObject<Customer>(sessionString);
-
-            if (customerSession != null)
+            if (sessionString != null)
             {
+                Customer customerSession = JsonConvert.DeserializeObject<Customer>(sessionString);
+
+                
                 var orders = OrderList.GetOrderList(customerSession.CustomerID);
 
                 List<OrderViewModel> orderViewModelList = new List<OrderViewModel>();
 
-                foreach (var order in orders)
-                {
+                foreach (var order in orders) 
+                { 
                     OrderViewModel ordVM = new OrderViewModel();
-
-                    ordVM.OrderItemId = order.OrderItemID;
-                    ordVM.ProductName = order.ProductName;
-                    ordVM.Price = order.Price;
-                    ordVM.Size = order.Size;
-                    ordVM.Quantity = order.Quantity;
+                    
+                    ordVM.OrderItemId = order.OrderItemID; 
+                    ordVM.ProductName = order.ProductName; 
+                    ordVM.Price = order.Price; 
+                    ordVM.Size = order.Size; 
+                    ordVM.Quantity = order.Quantity; 
                     orderViewModelList.Add(ordVM);
                 }
 
                 ViewBag.Order = orderViewModelList;
                 return View();
             }
+            
             else
             {
                 return RedirectToAction("Login", "Account");

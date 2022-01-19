@@ -30,5 +30,10 @@ namespace VictorPlacementTool.Logic
                 
             }
         }
+
+        public override string ToString()
+        {
+            return "Visitor " + Name + " has this seat: ";
+        }
     }
 }

@@ -5,14 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using Database.Data;
 using Interfaces;
+using TestDAL;
 
 namespace Factory
 {
     public static class OrderFactory
     {
-        public static OrderInterface GetOrderInterface()
+        public static OrderInterface GetOrderInterface(bool test)
         {
-            return new OrderDatabaseManager();
+            if (test == false)
+            {
+                return new OrderDatabaseManager();
+            }
+            else
+            {
+                return new TestOrderDatabaseManager();
+            }
         }
     }
 }

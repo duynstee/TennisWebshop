@@ -11,24 +11,29 @@ namespace Factory
 {
     public static class CustomerFactory
     {
-        public static CustomerInterface GetCustomerInterface()
-        {
-            return new OrderDatabaseManager();
-        }
-
         public static CustomerInterface GetCustomerInterface(bool test)
         {
-            return new TestOrderDatabaseManager();
-        }
-
-        public static CustomerCollectionInterface GetCustomerCollectionInterface()
-        {
-            return new CustomerDatabaseManager();
+            if (test == false)
+            {
+                return new OrderDatabaseManager();
+            }
+            else
+            {
+                return new TestOrderDatabaseManager();
+            }
+            
         }
 
         public static CustomerCollectionInterface GetCustomerCollectionInterface(bool test)
         {
-            return new TestCustomerDatabaseManager();
+            if (test == false)
+            {
+                return new CustomerDatabaseManager();
+            }
+            else
+            {
+                return new TestCustomerDatabaseManager();
+            }
         }
     }
 }

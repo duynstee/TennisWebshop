@@ -46,20 +46,22 @@ namespace WebShop.Controllers
         public ActionResult AddProdToOrder(int productId)
         {
             // get session into
-            var sessionCustomer =
-                JsonConvert.DeserializeObject<Customer>(HttpContext.Session.GetString("CustomerSession"));
-
-            if (sessionCustomer != null)
+            string sessionString = HttpContext.Session.GetString("CustomerSession");
+            if (sessionString != null)
             {
+                var sessionCustomer =
+                    JsonConvert.DeserializeObject<Customer>(sessionString);
+
+                
                 sessionCustomer.AddProdToOrder(productId, sessionCustomer.CustomerID);
                 return RedirectToAction("Index", "Order");
+                
+                
             }
             else
             {
                 return RedirectToAction("Login", "Account");
             }
-            
-            
         }
 
         [Route("/product/RemoveFromOrder/{orderItemId:int}")]

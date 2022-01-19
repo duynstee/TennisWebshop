@@ -12,13 +12,14 @@ namespace Logic.Tests
     [TestClass()]
     public class CustomerCollectionTests
     {
+        private bool test = true;
         [TestMethod()]
         public void CreateCustomerTest_With_Used_Email()
         {
             // Arrange
-            CustomerCollection cc = new CustomerCollection();
-            Customer customer = new Customer();
-            customer.CustomerEmail = "Olaf.duynstee@gmail.com";
+            CustomerCollection cc = new CustomerCollection(test);
+            Customer customer = new Customer(test);
+            customer.CustomerEmail = "olaf.duynstee@gmail.com";
             customer.CustomerPassword = "test123";
 
             // Act
@@ -31,8 +32,8 @@ namespace Logic.Tests
         public void LoginCustomerTest_With_Wrong_Inlog()
         {
             // Arrange
-            CustomerCollection cc = new CustomerCollection();
-            Customer c = new Customer();
+            CustomerCollection cc = new CustomerCollection(test);
+            Customer c = new Customer(test);
             c.CustomerEmail = "Olaf.duynstee@gmail.com";
             c.CustomerPassword = "WrongPassword";
             c.LoggedIn = false;
@@ -46,8 +47,8 @@ namespace Logic.Tests
         public void LoginCustomerTest_With_Correct_Login()
         {
             // Arrange
-            CustomerCollection cc = new CustomerCollection();
-            Customer c = new Customer();
+            CustomerCollection cc = new CustomerCollection(test);
+            Customer c = new Customer(test);
             c.CustomerEmail = "Olaf.duynstee@gmail.com";
             c.CustomerPassword = "Gorilla2";
             c.LoggedIn = false;
@@ -61,7 +62,7 @@ namespace Logic.Tests
         public void ChangePasswordTest_With_Wrong_Password()
         {
             // Arrange
-            CustomerCollection cc = new CustomerCollection();
+            CustomerCollection cc = new CustomerCollection(test);
             string customerEmail = "olaf.duynstee@gmail.com";
             string oldPassword = "Gorilla";
             string newPassword = "Gorilla3";
@@ -75,7 +76,7 @@ namespace Logic.Tests
         public void ChangePasswordTest_With_Correct_Password()
         {
             // Arrange
-            CustomerCollection cc = new CustomerCollection();
+            CustomerCollection cc = new CustomerCollection(test);
             string customerEmail = "olaf.duynstee@gmail.com";
             string oldPassword = "Gorilla2";
             string newPassword = "Gorilla2";

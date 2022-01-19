@@ -93,8 +93,17 @@ namespace WebShop.Controllers
 
         public IActionResult ChangePassword()
         {
-            ChangePasswordViewModel cpVM = new ChangePasswordViewModel();
-            return View(cpVM);
+            string sessionString = HttpContext.Session.GetString("CustomerSession");
+            if (sessionString != null)
+            {
+                ChangePasswordViewModel cpVM = new ChangePasswordViewModel();
+                return View(cpVM);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            
         }
 
         public IActionResult ChangePasswordAction(ChangePasswordViewModel cpVM)
@@ -104,20 +113,29 @@ namespace WebShop.Controllers
                 string newPassword = cpVM.CustomerNewPassword;
                 
                 CustomerCollection customerCollection = new CustomerCollection();
-                var customerSession =
-                    JsonConvert.DeserializeObject<Customer>(HttpContext.Session.GetString("CustomerSession"));
-                
-                string password = cpVM.CustomerPassword;
-                string email = customerSession.CustomerEmail;
-
-                var changeSuccessful = customerCollection.ChangePassword(email,password,  newPassword);
-                if (changeSuccessful == true)
+                string sessionString = HttpContext.Session.GetString("CustomerSession");
+                if (sessionString != null)
                 {
-                    return RedirectToAction("Login", "Account");
+                    var customerSession =
+                        JsonConvert.DeserializeObject<Customer>(sessionString);
+
+                    string password = cpVM.CustomerPassword;
+                    string email = customerSession.CustomerEmail;
+
+                    var changeSuccessful = customerCollection.ChangePassword(email, password, newPassword);
+                    if (changeSuccessful == true)
+                    {
+                        return RedirectToAction("Login", "Account");
+                    }
+                    else
+                    {
+                        return RedirectToAction("ChangePassword", "Account");
+                    }
                 }
+
                 else
                 {
-                    return RedirectToAction("ChangePassword", "Account");
+                    return RedirectToAction("Login", "Account");
                 }
             }
             else

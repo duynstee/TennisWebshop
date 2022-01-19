@@ -11,13 +11,14 @@ namespace Logic.Tests
     [TestClass()]
     public class OrderListTests
     {
+        private bool test = true;
         [TestMethod()]
         public void GetOrderListTest()
         {
-            CustomerCollection cc = new CustomerCollection();
+            CustomerCollection cc = new CustomerCollection(test);
             string testEmail = "olaf.duynstee@gmail.com";
             OrderList oL = new OrderList();
-            Customer testCustomer = new Customer();
+            Customer testCustomer = new Customer(test);
             // Arrange
 
             testCustomer = cc.GetCustomerInfo(testEmail);

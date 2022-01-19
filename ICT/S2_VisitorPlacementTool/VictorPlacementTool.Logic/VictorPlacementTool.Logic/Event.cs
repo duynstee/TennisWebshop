@@ -11,8 +11,9 @@ namespace VictorPlacementTool.Logic
 {
     public class Event
     {
+        public List<Group> Groups = new List<Group>();
         public List<Visitor> Visitors = new List<Visitor>();
-        public List<Visitor> PlacedVisitors = new List<Visitor>();
+        public List<Visitor> NotPlacedVisitors = new List<Visitor>();
         public List<Section> Sections = new List<Section>();
 
         public string Name;
@@ -44,12 +45,36 @@ namespace VictorPlacementTool.Logic
             Sections.Add(section);
         }
 
-        public void SeatToVisitor()
+
+
+        public void PlaceAll(List<Visitor> visitorToPlace)
+        {
+            //List<Visitor> visitorToPlace = new List<Visitor>();
+            foreach (var section in Sections)
+            {
+                section.PlaceAll(visitorToPlace);
+            }
+        }
+
+        public void GetVisitors()
+        {
+            foreach (var section in Sections)
+            {
+                section.GetVisitor();
+            }
+        }
+        
+        
+        
+        /*public void SeatToVisitor()
         {
             foreach (var addvisitor in Visitors)
             {
                 addvisitor.AddVisitor(addvisitor, Sections );
 
+                
+      
+                
                 /*foreach (var section in Sections)
                 {
                     foreach (var row in section.Rows)
@@ -68,9 +93,9 @@ namespace VictorPlacementTool.Logic
                             }
                         }
                     }
-                }*/
+                }
 
             }
-        }
+        }*/
     }
 }

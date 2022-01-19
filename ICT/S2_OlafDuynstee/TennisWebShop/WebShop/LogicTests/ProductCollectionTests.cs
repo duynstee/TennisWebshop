@@ -11,11 +11,13 @@ namespace Logic.Tests
     [TestClass()]
     public class ProductCollectionTests
     {
+        private bool test = true;
+
         [TestMethod()]
         public void GetProductList_Is_List_Of_Products()
         {
             // Arrange
-            ProductCollection pc = new ProductCollection();
+            ProductCollection pc = new ProductCollection(test);
             List<Product> products = pc.GetProductList();
             // Act
             

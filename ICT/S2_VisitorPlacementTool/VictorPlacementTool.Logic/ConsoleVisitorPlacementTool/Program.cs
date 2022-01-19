@@ -20,7 +20,8 @@ namespace ConsoleVisitorPlacementTool
             newEvent.CreateSection(2, 3);
 
 
-            newEvent.SeatToVisitor();
+            newEvent.PlaceAll(newEvent.Visitors);
+            newEvent.GetVisitors();
 
 
             Console.ReadLine();

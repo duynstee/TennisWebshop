@@ -26,6 +26,9 @@ namespace TestDAL
 
         }
 
-        public void RemoveProdFromOrder(int orderItemId){}
+        public void RemoveProdFromOrder(int orderItemId)
+        {
+
+        }
     }
 }

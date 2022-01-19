@@ -10,9 +10,20 @@ namespace Logic
 {
     public class CustomerCollection
     {
+        private bool test = false;
+        public CustomerCollection()
+        {
+            
+        }
+
+        public CustomerCollection(bool test)
+        {
+            this.test = test;
+        }
+        
         private bool CheckEmail(string customerEmail)
         {
-            CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface();
+            CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface(test);
 
             if (dbMan.CheckEmail(customerEmail) == 0)
             {
@@ -27,7 +38,7 @@ namespace Logic
 
         private bool CheckPassword(string email, string insertedPassword)
         {
-            CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface();
+            CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface(test);
             string password;
             password = dbMan.CheckPassword(email);
 
@@ -53,7 +64,7 @@ namespace Logic
                 customerDto.CustomerAddress = customer.CustomerAddress;
                 customerDto.CustomerPhoneNumber = customer.CustomerPhoneNumber;
 
-                CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface();
+                CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface(test);
                 dbMan.CreateCustomer(customerDto);
                 return true;
             }
@@ -66,7 +77,7 @@ namespace Logic
 
         public Customer LoginCustomer(Customer customerLogin)
         {
-            CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface();
+            CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface(test);
             CustomerDto customerDto = dbMan.LoginCustomer(customerLogin.CustomerEmail);
             
             Customer customerData = new Customer();
@@ -91,7 +102,7 @@ namespace Logic
             var passwordTrue = CheckPassword(CustomerEmail, CustomerPassword);
             if (passwordTrue == true)
             {
-                CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface();
+                CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface(test);
                 dbMan.ChangePassword(CustomerEmail, CustomerNewPassword);
                 return true;
             }
@@ -103,7 +114,7 @@ namespace Logic
 
         public Customer GetCustomerInfo(string customerEmail)
         {
-            CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface();
+            CustomerCollectionInterface dbMan = CustomerFactory.GetCustomerCollectionInterface(test);
             CustomerDto customerDto = dbMan.GetCustomerInfo(customerEmail);
 
             Customer customerData = new Customer();
