@@ -9,6 +9,5 @@ namespace VictorPlacementTool.Logic
     public class Group
     {
         private List<Visitor> visitors = new List<Visitor>();
-
     }
 }
